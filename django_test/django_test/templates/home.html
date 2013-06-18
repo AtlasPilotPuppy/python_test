@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+
+{%block content%}
+youre home
+
+{%if user.is_authenticated%}
+Welcome {{user.username}}
+{%endif%}
+
+{%endblock%}

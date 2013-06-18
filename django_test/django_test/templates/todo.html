@@ -1,0 +1,113 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<style>
+#todos{
+	width:300px;
+	margin:10px auto;
+
+	
+}
+input[type='text']{
+	width:200px;
+}
+span.status, span.del{
+	line-height: 43px; /* 40 + a couple of pixels visual adjustment */
+	font-size: 20px;
+	
+	text-shadow: 0 -1px 0 #bfbfbf;
+	width:40px;
+	height:40px;
+	display:inline-block;
+	cursor:pointer;
+}
+span.del{
+	color:red;
+	float:right;
+	display:None
+}
+span.status.active {
+	color: #d9d9d9;
+	
+}
+span.status.complete {
+
+	color: green;
+
+}
+
+.item:hover .del{
+	display:inline-block;;
+
+}
+
+.filter{
+	cursor:pointer;
+	color:blue;
+}
+</style>
+<script>
+$(function(){
+	$("#newitem").focus().on('keypress',function(e){
+		var item = $(this).val()
+		if(e.which==13 && item.length > 2){
+			$.post("/save_todo/",{'todo':item}, function(ret){
+				if(ret.success){
+					window.location = window.location
+				}
+			})
+			
+		}
+	})
+	$(".status").on('click',function(e){
+		var t = $(this)
+		var item = t.next().html()
+		$.post("/update_todo/",{'todo':item}, function(ret){
+			if(ret.success){
+				console.log(ret)
+				t.attr('class',"")
+				t.addClass("status")
+				t.addClass(ret.status)
+			}
+		})
+	})
+	$(".del").on('click',function(e){
+		var t = $(this)
+		var item = t.prev().html()
+		$.post("/remove_todo/",{'todo':item}, function(ret){
+			if(ret.success){
+				t.parents(".item").remove()
+			}
+		})
+	})
+	$(".filter").on('click',function(){
+		var t = $(this)
+		var status = t.attr('class').split("filter ")[1]
+		if(status!='all'){
+			$(".status:not(."+status+")").parents(".item").slideUp('fast')
+			$(".status."+status).parents(".item").slideDown('fast')
+		}else{
+			$(".item").slideDown('fast')
+		}
+	})
+})
+</script>
+<div id="todos">
+<input id="newitem" type="text" placeholder="What needs to be done"/>
+<div id="list">
+	{%for item in list%}
+	<div class="item">
+		<span class="status {{item.status}}">&#10004;</span>
+		<span class='item_val'>{{item.value}}</span>
+		<span class='del'>X</span>
+	</div>
+	{%endfor%}
+	<span class="filter all" >all</span> | 
+	<span class="filter active" >active</span> | 
+	<span class="filter complete" >complete</span>
+</div>
+</div>
+
+{%endblock%}
