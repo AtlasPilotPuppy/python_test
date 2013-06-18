@@ -1,0 +1,14 @@
+
+<a href="/">Home</a> >>
+{%if not user.is_authenticated%} 
+<a href="/login">login</a>
+{%else%}
+<a href="/todo">todo</a> >>
+<a href="logout">logout</a>
+{%endif%}
+<br/>
+<br/>
+
+{%block content%}
+
+{%endblock%}
