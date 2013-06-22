@@ -11,20 +11,12 @@ from primefactorization import primefactors
 
 def check(prod):
   '''
-  check if integer prod is a palindrome
+  check if prod is a palindrome
   '''
-  prod_str = str(prod)
-  length = len(prod_str)
-  if length%2 == 1:  # odd number of digits
-    for digit in xrange(length/2):
-      if prod_str[digit] != prod_str[-(digit + 1)]:
-        return False # return on first inequality
-    '''don't need to check if middle digit == middle digit'''
-  else:              # even number of digits
-    for digit in xrange(length/2):
-      if prod_str[digit] != prod_str[-(digit + 1)]:
-        return False # return on first inequality
-  return True        # palindrome
+  if str(prod) == str(prod)[::-1]:
+    return True # palindrome
+  else:
+    return False # not palindrome
 
 def find(n,m,found):
   '''
