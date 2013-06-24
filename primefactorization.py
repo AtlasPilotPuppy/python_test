@@ -9,12 +9,12 @@ def primesbelow(N):
     N = {0:N, 1:N-1, 2:N+4, 3:N+3, 4:N+2, 5:N+1}[N%6]
     sieve = [True] * (N // 3)
     sieve[0] = False
-    for i in range(int(sqrt(N)) // 3 + 1):
+    for i in xrange(int(sqrt(N)) // 3 + 1):
         if sieve[i]:
             k = (3 * i + 1) | 1
             sieve[k*k // 3::2*k] = [False] * ((N//6 - (k*k)//6 - 1)//k + 1)
             sieve[(k*k + 4*k - 2*k*(i%2)) // 3::2*k] = [False] * ((N // 6 - (k*k + 4*k - 2*k*(i%2))//6 - 1) // k + 1)
-    return [2, 3] + [(3 * i + 1) | 1 for i in range(1, N//3 - correction) if sieve[i]]
+    return [2, 3] + [(3 * i + 1) | 1 for i in xrange(1, N//3 - correction) if sieve[i]]
 
 smallprimeset = set(primesbelow(100000))
 _smallprimeset = 100000
@@ -34,13 +34,13 @@ def isprime(n, precision=7):
         d //= 2
         s += 1
 
-    for repeat in range(precision):
+    for repeat in xrange(precision):
         a = random.randrange(2, n - 2)
         x = pow(a, d, n)
 
         if x == 1 or x == n - 1: continue
 
-        for r in range(s - 1):
+        for r in xrange(s - 1):
             x = pow(x, 2, n)
             if x == 1: return False
             if x == n - 1: break
@@ -57,13 +57,13 @@ def pollard_brent(n):
     g, r, q = 1, 1, 1
     while g == 1:
         x = y
-        for i in range(r):
+        for i in xrange(r):
             y = (pow(y, 2, n) + c) % n
 
         k = 0
         while k < r and g==1:
             ys = y
-            for i in range(min(m, r-k)):
+            for i in xrange(min(m, r-k)):
                 y = (pow(y, 2, n) + c) % n
                 q = q * abs(x-y) % n
             g = gcd(q, n)
