@@ -1,3 +1,5 @@
+// todo: inline editing, probably use http://vitalets.github.io/x-editable/
+
 var handle_toggle = function ( elements, id_index ) {
     id_index = id_index || 3;
     // Toggle the strikout css on the text when we change the checkbox.
@@ -58,7 +60,7 @@ $(document).ready(function () {
     handle_toggle($('.toggle'));  
       
     handle_delete($('.delete'));
-    
+   
     $('#newtask').submit( function() {
         // Stop the default form submission.
         event.preventDefault();

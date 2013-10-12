@@ -20,7 +20,7 @@
     <li id="{{ t.pk }}">
         <input class='toggle' id="box{{ t.pk }}" type="checkbox"/>
     {% endif %}
-        <label class="tasktext" for="box{{ t.pk }}" id="text{{ t.pk }}"> 
+        <label class="tasktext" id="text{{ t.pk }}"> 
             {{ t.text }} 
         </label>
         <span class="delete" id="delete{{ t.pk }}">X</span>
