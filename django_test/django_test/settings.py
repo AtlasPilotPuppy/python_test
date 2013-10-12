@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo',
-#    'registration',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -153,9 +152,5 @@ LOGGING = {
 }
 
 ###  Custom settings
-
-# allow us to use the generic user.get_profile() instead of hardcoding
-# user.userprofile
-#AUTH_PROFILE_MODULE = 'todo.UserProfile'
 
 AUTH_USER_MODEL = 'todo.CustomUser'

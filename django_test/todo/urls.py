@@ -12,6 +12,3 @@ urlpatterns = patterns('todo.views',
     url(r'^register/$', 'register', name='register'),
 )
 
-#urlpatterns += patterns('',
-#    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
-#)
