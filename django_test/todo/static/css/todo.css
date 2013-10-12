@@ -1,0 +1,52 @@
+.hidden {
+    display:none;
+}
+
+#title {
+    font-weight:bold;
+    width:500px;
+    margin:2px auto;
+    text-align:center;
+}
+.tasklist {
+    border:solid thin;
+    border-top:solid thick;
+    width:500px;
+    padding:0px;
+    list-style-type:none;
+    margin: 5px auto;
+}
+
+.tasklist li{
+    border-top:solid thin;
+    padding-top: 3px;
+}
+
+.toggle-new{
+    visibility:hidden;
+}
+
+.tasktext {
+
+}
+
+.done .delete {
+    display:inline;
+}
+
+.done label {
+    text-decoration: line-through;
+    color:grey;
+}
+
+.delete {
+    padding-right:5px;
+    float:right;
+    display:none;
+}
+
+.editing {
+    width:90%;
+    border:none;
+    padding:5px;
+}

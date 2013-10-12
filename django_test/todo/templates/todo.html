@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<p id='title'> What do you need to do?</p>
+<div class='hidden' id='csrf-token'>{{ csrf_token }}</div>
+<ul class="tasklist">
+    <form id="newtask" method='post' action="create/">
+    <li id="none">
+        <input class="toggle-new" name="box"  type="checkbox" disabled/>
+        <input class="editing" name="text" id='newtext'/>
+    </li>
+    </form>
+{% for t in tasks %}
+    {% if t.completed %}
+    <li class="done" id="{{ t.pk }}">
+        <input class='toggle' id="box{{ t.pk }}" type="checkbox" checked/>
+    {% else %}
+    <li id="{{ t.pk }}">
+        <input class='toggle' id="box{{ t.pk }}" type="checkbox"/>
+    {% endif %}
+        <label class="tasktext" for="box{{ t.pk }}" id="text{{ t.pk }}"> 
+            {{ t.text }} 
+        </label>
+        <span class="delete" id="delete{{ t.pk }}">X</span>
+    </li>
+{% endfor %}
+</ul>
+<a href='/todo/logout/'>sign out?</a>
+{% endblock %}
