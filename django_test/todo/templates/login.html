@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div id='login'>
+    <div id='welcome'>
+        {% if user.is_authenticated %}
+            <p class='warning'>
+            <strong>{{ user }}</strong>, you're already signed in.<br>Did you want to <a href='{% url 'logout' %}'>sign out?</a>
+            </p>
+        {% else %}
+            <p>Sign in on the right or <a href='{% url 'register' %}'>register</a>.</p>
+        {% endif %}
+    </div>
+    <div id='form'>
+        <form method='post' action='{% url 'login' %}'>
+          <h1>Sign In</h1>
+          <fieldset>
+                {% if form.errors %}
+                    <div>{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <div><label>Email: </label> <input type='text' id='id_username' name='username'></div>
+                {% if form.username.errors %}
+                    <div>{{ form.username.errors }}</div>
+                {% endif %}
+
+                <div><label>{{ form.password.label }}:</label> {{ form.password }}</div>
+
+                {% if form.password.errors %}
+                    <div>{{ form.password.errors }}</div>
+                {% endif %}
+
+                <div class='hidden'>
+                    <input type='hidden' name='next' value='{{ next }}'>
+                    {% csrf_token %}
+                </div>
+                <input type='submit' value='Submit'>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+

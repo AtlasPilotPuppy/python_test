@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Register {% endblock %}
+{% block content %}
+<div id='login'>
+    <div id='welcome'>
+        {% if user.is_authenticated %}
+        <p class='warning'>
+        <strong>{{ user }}</strong>, you're already signed in.<br>Did you want to <a href='logout/'>sign out?</a>
+        </p>
+        {% endif %}
+    </div>
+    <div id='form'>
+        <form method='post' action='{% url "register" %}'>
+          <h1>Register</h1>
+          <fieldset>
+              {% for field in form.visible_fields %}
+              <div {% if field.errors %}class='error' {% endif %}>
+                  <label>{{ field.label_tag }}:</label>
+                  {{ field }}
+                  {% for err in field.errors %}
+                  <span class='error-message'>{{ err }}</span>
+                  {% endfor %}
+              </div>
+              {% endfor %}
+              {% csrf_token %}
+              <br>
+              <input type='submit' value='Register'>
+          </fieldset>
+        </form>
+    </div>
+    <p> Already registered? <a href='{% url 'login' %}'>sign in</a>.</p>
+</div>
+{% endblock %}
+
+
+
