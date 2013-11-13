@@ -73,6 +73,6 @@ The run tests from setup.py or by `py.test`
 
 ## Information
 
-Source: https://github.com/lakeslc/pychallenge
+Source: https://github.com/lakeslc/python_test
 
 Authors: [Jonathan Randall](https://github.com/lakeslc/)
