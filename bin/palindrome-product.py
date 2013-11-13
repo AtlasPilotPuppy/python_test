@@ -14,11 +14,10 @@ finish = datetime.datetime.now()
 
 msg = '''That largest palindrome with two 3-digit factors is {0:,}
 It's factors are {1} & {2}
-Finished in {3}.{4} seconds'''
+Finished in {3} milliseconds'''
 
 delta = finish - start
 print msg.format(result.palindrome,
                  result.factor1,
                  result.factor2,
-                 delta.seconds,
-                 delta.microseconds)
+                 (delta.seconds * 1000) + (delta.microseconds/1000.0))

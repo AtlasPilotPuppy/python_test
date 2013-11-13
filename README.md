@@ -18,6 +18,10 @@ See [virtualenv docs](https://pypi.python.org/pypi/virtualenv)
 #### Run the install
 You can install the code simply by running
 
+`python setup.py test` 
+
+If the tests pass proceed with the intsall. Execute
+
 `python setup.py install` 
 
 from the project's root directory.
@@ -37,6 +41,14 @@ You can run it without arguments to get a help message or specify an integer of 
 You can run the automated tests with
 
 `python setup.py test`
+
+If the package is already install there might be some conflicts. You can usually clean these up by deleting the build directory
+
+`rm -rf build/`
+
+from the project's root directory.
+
+The run tests from setup.py or by `py.test`
 
 ## Information
 
