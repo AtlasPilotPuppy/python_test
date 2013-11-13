@@ -42,7 +42,7 @@ You can run the automated tests with
 
 `python setup.py test`
 
-If the package is already install there might be some conflicts. You can usually clean these up by deleting the build directory
+If the package is already installed there might be some conflicts. You can usually clean these up by deleting the build directory
 
 `rm -rf build/`
 
